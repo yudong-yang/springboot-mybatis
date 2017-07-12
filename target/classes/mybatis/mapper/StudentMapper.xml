@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neo.mapper.StudentMapper" >
+    <resultMap id="BaseResultMap" type="com.neo.entity.Student" >
+        <id column="sno" property="sno" jdbcType="BIGINT" />
+        <result column="sname" property="sname" jdbcType="VARCHAR" />
+        <result column="cno" property="cno" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" javaType="com.neo.enums.UserSexEnum"/>
+        <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        sno, sname, cno, sex, birthday
+    </sql>
+
+    <select id="getByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Student LIMIT ${offset} , ${limit}
+    </select>
+    
+     <select id="getAll" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Student
+    </select>
+
+    <select id="getOne" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Student
+	   WHERE sno = #{sno}
+    </select>
+
+        <select id="getByName" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM Student
+	   WHERE sname = #{sname}
+    </select>
+    
+    <insert id="insert" parameterType="com.neo.entity.Student" >
+       INSERT INTO 
+       		Student
+       		(sno, sname, cno, sex, birthday) 
+       	VALUES
+       		(#{sno}, #{sname}, #{cno}, #{sex}, #{birthday})
+    </insert>
+    
+    <update id="update" parameterType="com.neo.entity.Student" >
+       UPDATE 
+       		Student 
+       SET 
+       	<if test="sname != null">sname = #{sname},</if>
+       	<if test="cno != null">cno = #{cno},</if>
+       	sex = #{sex}
+       	birthday = #{birthday}
+       WHERE 
+       		sno = #{sno}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Integer" >
+       DELETE FROM
+       		 Student 
+       WHERE 
+       		 sno =#{sno}
+    </delete>
+
+</mapper>

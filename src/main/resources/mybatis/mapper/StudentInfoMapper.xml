@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neo.mapper.StudentInfoMapper" >
+
+	<resultMap id="CategoryResult" type="com.neo.entity.StudentInfo">
+	    <id property="id" column="sno"></id>
+		<association property="student" javaType="com.neo.entity.Student">
+			<result property="sno" column="sno"></result>
+			<result property="sname" column="sname"></result>
+			<result property="cno" column="cno"></result>
+			<result property="birthday" column="birthday"></result>
+			<result property="sex" column="sex"></result>
+		</association>
+		<association  property="clases" javaType="com.neo.entity.Class">
+			<result property="cno" column="cno"></result>
+			<result property="cname" column="cname"></result>
+			<result property="grade" column="grade"></result>
+		</association >
+		
+		<collection property="courses" ofType="com.neo.entity.Course">
+			<result property="bno" column="bno"></result>
+			<result property="bname" column="bname"></result>
+			<result property="credit" column="credit"></result>
+		</collection>
+		
+		<collection property="selecourses" ofType="com.neo.entity.SeleCourse">
+			<result property="sno" column="sno"></result>
+			<result property="bno" column="bno"></result>
+			<result property="score" column="score"></result>
+		</collection>
+	</resultMap>
+
+	<select id="getBySno" parameterType="java.lang.Integer" resultMap="CategoryResult">
+		select student.sno, sname , student.cno, birthday ,sex ,cname , grade ,Course.bno ,bname ,
+		SeleCourse.sno, SeleCourse.bno, score from student join class join course join selecourse
+		where student.cno = class.cno and selecourse.bno = course.bno and student.sno = selecourse.sno
+		<if test="_parameter != null">
+            and student.sno = #{_parameter,jdbcType=INTEGER}
+        </if>
+	<!--当传入数据只有一个时mybatis中<if>判断会出现There is no getter for property named 'subjectId' in 'class java.lang.Intege' 
+	 解决方法 用"_parameter"代替当前参数 -->
+	</select>
+  
+</mapper>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8"/>
+<title>列表页面</title>
+</head>
+<body>
+<h1 align="center">所有列表页面</h1>
+<div th:if="${not #lists.isEmpty(pageinfo)}" align="center">
+<table>
+  <thead>
+    <tr>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>昵称</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+   <div th:each="user: ${pageinfo.list}">
+    <tr>
+    <td th:text="${user.sno}">Oranges</td>
+      <td th:text="${user.sname}">Oranges</td>
+      <td th:text="${user.sno}">1002</td>
+      <td th:text="${user.sex}">男</td>
+      <td th:text="${user.birthday}">男</td>
+    </tr>
+    </div>
+  </tbody>
+  
+</table>
+<nav>
+    <ul class="pager">
+        <li th:if="${pageinfo.hasPreviousPage}" class="previous">
+            <a th:href="@{'/pagelist'(page=${pageinfo.prePage},pageSize=${pageinfo.pageSize})}">
+            <span aria-hidden="true">&larr;
+            </span> 上一页</a>
+        </li>
+        <li th:if="${pageinfo.hasNextPage}" class="next">
+          <a th:href="@{'/pagelist'(page=${pageinfo.nextPage},pageSize=${pageinfo.pageSize})}">下一页 
+            <span aria-hidden="true">&rarr;</span>
+        </a></li>
+    </ul>
+</nav>
+</div>
+</body>
+</html>

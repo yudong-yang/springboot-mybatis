@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8"/>
+<title>列表页面</title>
+</head>
+<body>
+<h1 align="center">所有列表页面</h1>
+<div th:if="${not #lists.isEmpty(lists)}" align="center">
+<table>
+  <thead>
+    <tr>
+      <th>学号</th>
+      <th>姓名</th>
+      <th>班级</th>
+       <th>课程</th>
+      <th>学分</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+   <div th:each="stuinfo: ${lists}">
+    <tr>
+    <td th:text="${stuinfo.student.sno}">Oranges</td>
+      <td th:text="${stuinfo.student.sname}">Oranges</td>
+      <td th:text="${stuinfo.clases.cname}">1002</td>
+      <td th:text="${stuinfo.courses[0].bname}">语文</td>
+      <td th:text="${stuinfo.selecourses[0].score}">100</td>
+    </tr>
+    </div>
+  </tbody>
+  
+</table>
+</div>
+</body>
+</html>
