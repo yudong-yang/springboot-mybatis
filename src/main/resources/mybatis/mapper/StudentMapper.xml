@@ -19,6 +19,11 @@
 	   FROM Student LIMIT ${offset} , ${limit}
     </select>
     
+    <select id="maxSno" resultType="java.lang.Integer" >
+		SELECT MAX(sno) FROM Student
+	</select>
+    
+    
      <select id="getAll" parameterType="java.lang.Integer" resultMap="BaseResultMap"  >
        SELECT 
        <include refid="Base_Column_List" />

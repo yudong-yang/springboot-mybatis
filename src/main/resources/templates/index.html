@@ -30,6 +30,13 @@
   </tbody>
   
 </table>
+<!-- 
+<select id>
+<option >---</option> 
+<option th:each="select:${selects}" th:value ="${select}" th:text="${select}">---</option>  
+</select> -->
+
+
 <nav>
     <ul class="pager">
         <li th:if="${pageinfo.hasPreviousPage}" class="previous">
@@ -44,5 +51,6 @@
     </ul>
 </nav>
 </div>
+
 </body>
 </html>

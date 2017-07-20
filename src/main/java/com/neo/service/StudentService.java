@@ -24,8 +24,12 @@ public class StudentService {
 		return student;
 	}
 
-	public Boolean addStudent(Student students) {
-		int flag = studentMapper.insert(students);
+	public Boolean addStudent(Student student) {
+		System.out.println(studentMapper.maxSno());
+		int sno = studentMapper.maxSno()+1;
+		System.out.println("======"+sno);
+		student.setSno(sno);
+		int flag = studentMapper.insert(student);
 		if(flag!=0){
 			return true;
 		}else{

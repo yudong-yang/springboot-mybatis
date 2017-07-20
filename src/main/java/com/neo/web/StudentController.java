@@ -15,7 +15,7 @@ import com.neo.mapper.StudentInfoMapper;
 import com.neo.service.StudentService;
 
 @RestController
-public class UserController {
+public class StudentController {
 	
 	@Autowired
 	private StudentService studentservice;

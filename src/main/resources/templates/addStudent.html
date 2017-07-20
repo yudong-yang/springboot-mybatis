@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8"/>
+<title>添加学生信息</title>
+</head>
+<body>
+<h1 align="center">添加学生信息</h1>
+<form action="/add">
+姓名：<input type="text" name = "sname"/>
+班级：<input type="text" name = "cno"/>
+<label for="birthday">约会日期：</label><input name = "birthday" type="date" value="2001-01-13"/>
+性别：<select name = "sex">
+  		<option value ="MAN" selected="selected">男</option>
+ 	 	<option value ="WOMAN">女</option>
+</select>
+<input type="submit" value="提交"/>
+</form>
+</body>
+</html>

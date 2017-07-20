@@ -23,5 +23,7 @@ public interface StudentMapper {
 	int update(Student user);
 
 	int delete(Integer sno);
+	
+	int maxSno();
 
 }

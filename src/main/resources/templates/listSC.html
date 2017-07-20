@@ -9,31 +9,30 @@
 <h1 align="center">所有列表页面</h1>
 <div th:if="${not #lists.isEmpty(lists)}" align="center">
 
-<h1>学生信息表</h1>
+学号：<span th:text="${lists.student.sno}"></span>
+姓名：<span th:text="${lists.student.sname}"></span>
+性别：<span th:text="${lists.student.sex}"></span>
 <table>
   <thead>
     <tr>
       <th>学号</th>
-      <th>姓名</th>
-      <th>班级</th>
-       <th>课程</th>
-      <th>学分</th>
+      <th>课程编号</th>
+      <th>成绩</th>
     </tr>
   </thead>
  
   <tbody>
-   <div th:each="stuinfo: ${lists}">
+   <div th:each="user: ${lists.selecourses}">
     <tr>
-    <td th:text="${stuinfo.student.sno}">Oranges</td>
-      <td th:text="${stuinfo.student.sname}">Oranges</td>
-      <td th:text="${stuinfo.clases.cname}">1002</td>
-      <td th:text="${stuinfo.courses[0].bname}">语文</td>
-      <td th:text="${stuinfo.selecourses[0].score}">100</td>
+     <td th:text="${user.sno}">Oranges</td>
+      <td th:text="${user.bno}">Oranges</td>
+      <td th:text="${user.score}">1002</td>
     </tr>
     </div>
   </tbody>
   
 </table>
 </div>
+
 </body>
 </html>

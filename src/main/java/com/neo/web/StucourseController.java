@@ -1,7 +1,5 @@
 package com.neo.web;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +22,14 @@ public class StucourseController {
 	    	StuCourse studentinfos=scmapper.getAll(sno);
 	    	model.addAttribute("lists", studentinfos);
 	        return studentinfos;
+	    }  
+	  
+	    
+	    @RequestMapping("/listSC")
+	   public String listSC(Integer sno, Model model) {
+	    	StuCourse studentinfos=scmapper.getAll(sno);
+	    	model.addAttribute("lists", studentinfos);
+	        return "listSC";
 	    }  
 	  
 }
