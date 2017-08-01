@@ -7,7 +7,7 @@ public class StudentInfo {
 
 	private int id;
  	private Student student;
-	private Class clases;
+	private Clazz clases;
 	private List<Course> courses;
 	private List<SeleCourse> selecourses;
 		
@@ -23,10 +23,10 @@ public Student getStudent() {
 public void setStudent(Student student) {
 	this.student = student;
 }
-public Class getClases() {
+public Clazz getClases() {
 	return clases;
 }
-public void setClases(Class clases) {
+public void setClases(Clazz clases) {
 	this.clases = clases;
 }
 public List<Course> getCourses() {

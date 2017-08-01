@@ -1,16 +1,16 @@
 package com.neo.entity;
 
-public class Class {
+public class Clazz {
 
 	private String cno;
 	private String cname;
 	private String grade;
 	
-	public Class(){
+	public Clazz(){
 		super();
 	}
 	
-	public Class(String cno, String cname, String grade) {
+	public Clazz(String cno, String cname, String grade) {
 		super();
 		this.cno = cno;
 		this.cname = cname;

@@ -20,15 +20,15 @@
       <th>学分</th>
     </tr>
   </thead>
- 
+ ${lists[0].courses.size}
   <tbody>
    <div th:each="stuinfo: ${lists}">
-    <tr>
+    <tr th:each="i: ${stuinfo.courses}">
     <td th:text="${stuinfo.student.sno}">Oranges</td>
       <td th:text="${stuinfo.student.sname}">Oranges</td>
       <td th:text="${stuinfo.clases.cname}">1002</td>
-      <td th:text="${stuinfo.courses[0].bname}">语文</td>
-      <td th:text="${stuinfo.selecourses[0].score}">100</td>
+      <td th:text="${stuinfo.courses[i].bname}">语文</td>
+      <td th:text="${stuinfo.selecourses[i].score}">100</td>
     </tr>
     </div>
   </tbody>

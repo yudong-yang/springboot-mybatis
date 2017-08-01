@@ -2,15 +2,16 @@ package com.neo.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.neo.entity.Student;
-import com.neo.entity.StudentInfo;
 import com.neo.mapper.StudentInfoMapper;
 import com.neo.service.StudentService;
 
@@ -41,11 +42,20 @@ public class StudentController {
     
     @RequestMapping("/add")
     @ResponseBody
-    public String add(Student students) {
+    public String add(Student students,HttpServletRequest request) {
+    	String token = request.getParameter("tokenValue");
+    	HttpSession session = request.getSession();
+    	System.out.println(session.getAttribute("token"));
+    	System.out.println(token);
+    	if(token.equals(session.getAttribute("token"))){
     	if(studentservice.addStudent(students)){
+    		session.removeAttribute("token");
     		return "插入成功";
     	}else{
     		return "添加失败";
+    	}
+    	}else{
+    		return "表单重复提交";
     	}
     }
     

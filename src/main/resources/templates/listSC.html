@@ -3,10 +3,10 @@
       xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
 <meta charset="UTF-8"/>
-<title>列表页面</title>
+<title>学生信息页面</title>
 </head>
 <body>
-<h1 align="center">所有列表页面</h1>
+<h1 align="center">学生信息页面</h1>
 <div th:if="${not #lists.isEmpty(lists)}" align="center">
 
 学号：<span th:text="${lists.student.sno}"></span>
@@ -19,16 +19,13 @@
       <th>课程编号</th>
       <th>成绩</th>
     </tr>
-  </thead>
- 
+  </thead> 
   <tbody>
-   <div th:each="user: ${lists.selecourses}">
-    <tr>
+    <tr th:each="user: ${lists.selecourses}">
      <td th:text="${user.sno}">Oranges</td>
       <td th:text="${user.bno}">Oranges</td>
       <td th:text="${user.score}">1002</td>
     </tr>
-    </div>
   </tbody>
   
 </table>

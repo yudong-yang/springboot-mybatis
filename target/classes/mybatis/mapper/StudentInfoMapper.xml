@@ -11,7 +11,7 @@
 			<result property="birthday" column="birthday"></result>
 			<result property="sex" column="sex"></result>
 		</association>
-		<association  property="clases" javaType="com.neo.entity.Class">
+		<association  property="clases" javaType="com.neo.entity.Clazz">
 			<result property="cno" column="cno"></result>
 			<result property="cname" column="cname"></result>
 			<result property="grade" column="grade"></result>

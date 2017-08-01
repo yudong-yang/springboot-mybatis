@@ -2,6 +2,9 @@ package com.neo.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.neo.entity.Clazz;
 import com.neo.entity.Student;
 import com.neo.entity.StudentInfo;
 import com.neo.enums.UserSexEnum;
+import com.neo.mapper.ClazzMapper;
 import com.neo.mapper.StudentInfoMapper;
 import com.neo.service.StudentService;
 
@@ -24,17 +29,23 @@ public class IndexController {
 	@Autowired
 	private StudentService studentservice;
 	
+	@Autowired
+	private ClazzMapper clazzMapper;
 	
 	@Autowired
 	private StudentInfoMapper studentInfoMapper;
 	
 	  @RequestMapping("/student")
-	    public String student() {
+	    public String student(HttpServletRequest request , Model model) {
+		  String token = UUID.randomUUID().toString();//创建令牌
+          System.out.println("在FormServlet中生成的token："+token);
+          request.getSession().setAttribute("token", token); 
+		  List<Clazz> clazzes = clazzMapper.getAll();
+		  model.addAttribute("token", token);
+		  model.addAttribute("clazzs", clazzes);
 			return "addStudent";
 		  
 	  }
-	
-	
 	
 	  @RequestMapping("/addstudent")
 	    public String addStudent(int num) {
@@ -93,11 +104,20 @@ public class IndexController {
 	  }
 
 	    @RequestMapping("/getStus")
-	    @ResponseBody
+//	    @ResponseBody
 	    public Object findByStuno(Integer sno, Model model) {
 	    	List<StudentInfo> studentinfos=studentInfoMapper.getBySno(sno);
 	    	model.addAttribute("lists", studentinfos);
-	        return studentinfos;
+	        return "studentinfo";
 	    }  
+	    
+	    
+	    @RequestMapping("/listsStus")
+	    @ResponseBody
+	    public Object listsStus(Integer sno, Model model) {
+	    	List<StudentInfo> studentinfos=studentInfoMapper.getBySno(sno);
+	    	model.addAttribute("lists", studentinfos);
+	        return studentinfos;
+	    } 
 	  
 }
