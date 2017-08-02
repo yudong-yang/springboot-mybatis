@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.neo.mapper.ClazzMapper" >
+    <resultMap id="BaseResultMap" type="com.neo.entity.Clazz" >
+        <result column="cno" property="cno" jdbcType="VARCHAR" />
+        <result column="cname" property="cname" jdbcType="VARCHAR"/>
+        <result column="grade" property="grade" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        cno, cname, grade
+    </sql>
+      
+     <select id="getAll" parameterType="java.lang.String" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM class
+    </select>
+
+    <select id="getOne" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM class
+	   WHERE cno = #{cno}
+    </select>
+
+        <select id="getByName" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM class
+	   WHERE cname = #{cname}
+    </select>
+    
+    <insert id="insert" parameterType="com.neo.entity.Student" >
+       INSERT INTO 
+       		class
+       		( cno, cname, grade) 
+       	VALUES
+       		(#{cno}, #{cname}, #{grade})
+    </insert>
+    
+    <update id="update" parameterType="com.neo.entity.Student" >
+       UPDATE 
+       		class 
+       SET 
+       	<if test="cname != null">cname = #{cname},</if>
+         grade = #{grade}
+       WHERE 
+       		cno = #{cno}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.String" >
+       DELETE FROM
+       		 class 
+       WHERE 
+       		 cno =#{cno}
+    </delete>
+
+</mapper>
