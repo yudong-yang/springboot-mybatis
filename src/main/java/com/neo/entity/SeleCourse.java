@@ -1,10 +1,15 @@
 package com.neo.entity;
 
+/**
+ * 成绩表
+ * @author Administrator
+ *
+ */
 public class SeleCourse {
 
-	private int sno;
-	private String bno;
-	private Double score;
+	private int sno;//学号
+	private String bno;//课程号
+	private Double score;//成绩
 	
 	public SeleCourse() {
 		super();

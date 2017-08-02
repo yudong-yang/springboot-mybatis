@@ -3,9 +3,9 @@ package com.neo.entity;
 //课程表
 public class Course {
 
-	private String bno;
-	private String bname;
-	private String credits;
+	private String bno;//课程号
+	private String bname;//课程名称
+	private String credits;//课程学分
 	
 	
 	

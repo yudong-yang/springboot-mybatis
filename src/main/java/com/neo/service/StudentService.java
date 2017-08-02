@@ -2,7 +2,8 @@ package com.neo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
 import com.neo.entity.Student;
@@ -11,7 +12,7 @@ import com.neo.mapper.StudentMapper;
 @Service
 public class StudentService {
 
-	@Autowired
+	@Resource(name="studentMapper")
 	private StudentMapper studentMapper;
 	
 	public List<Student> getAll(){
@@ -64,7 +65,6 @@ public boolean exist(Student student) {
 	return true;
 	}else{
 		return false;
-	}
-	
+	}	
 }
 }
